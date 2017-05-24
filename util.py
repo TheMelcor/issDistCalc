@@ -38,8 +38,4 @@ def run2():
 
     distance = calc_distance(float(temp[0]), iss['iss_position']['latitude'], float(temp[1]), iss['iss_position']['longitude'])
 
-    return distance
-
-
-# run(localLat, localLong)
-run2()
+    return round(distance,2)
