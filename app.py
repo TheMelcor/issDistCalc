@@ -10,7 +10,7 @@ class IssTrackerGui(Tkinter.Tk):
         self.stime = 5000
         self.labelDist = Tkinter.Label()
         self.distance = 0
-        self.strDist = ""
+        self.strDist = Tkinter.StringVar()
         self.local_cords = []
 
         self.initialize()
