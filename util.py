@@ -4,7 +4,6 @@ from calc import calc_distance
 
 localLat = 0
 localLong = 0
-temp = []
 iss = []
 
 
@@ -27,15 +26,18 @@ def run(latitude, longitude):
     print "Current ground distance to the ISS: " + str(calc_distance(latitude, iss['iss_position']['latitude'], longitude, iss['iss_position']['longitude'])) + "km"
 
 
-def run2():
-    global temp
+def run2(localcords):
     global iss
+
+    iss = get_iss_cords()
+
+    distance = calc_distance(float(localcords[0]), iss['iss_position']['latitude'], float(localcords[1]), iss['iss_position']['longitude'])
+
+    return round(distance,2)
+
+
+def get_local_cords():
     response = urllib2.urlopen('http://ipinfo.io/json')
     data = json.load(response)
     _temp = str(data["loc"])
-    temp = str.split(_temp, ",")
-    iss = get_iss_cords()
-
-    distance = calc_distance(float(temp[0]), iss['iss_position']['latitude'], float(temp[1]), iss['iss_position']['longitude'])
-
-    return round(distance,2)
+    return str.split(_temp, ",")
